@@ -351,5 +351,11 @@ return [
 			'disk' => 'vendorLog',
 		],
 
+		// Haima: env-manager (https://github.com/laravel-admin-extensions/env-manager)
+		'env-manager' => [
+			// If the value is set to false, this extension will be disabled
+			'enable' => true,
+		],
+
     ],
 ];
