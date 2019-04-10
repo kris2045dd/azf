@@ -335,5 +335,15 @@ return [
     */
     'extensions' => [
 
+		// Haima: auth-attempts (https://github.com/laravel-admin-extensions/auth-attempts)
+		'auth-attempts' => [
+			// set to false if you want to disable this extension
+			'enable' => true,
+
+			// configuration
+			'maxAttempts'  => 5,
+			'decayMinutes' => 1,
+		],
+
     ],
 ];
