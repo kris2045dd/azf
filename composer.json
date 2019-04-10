@@ -10,6 +10,7 @@
         "fideloper/proxy": "~3.3",
         "guzzlehttp/guzzle": "~6.0",
         "laravel-admin-ext/helpers": "^1.1",
+        "laravel-admin-ext/media-manager": "^1.0",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "manzhouya/auth-attempts": "^1.2"

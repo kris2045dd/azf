@@ -345,5 +345,11 @@ return [
 			'decayMinutes' => 1,
 		],
 
+		// Haima: media-manager (https://github.com/laravel-admin-extensions/media-manager)
+		'media-manager' => [
+			// Select a local disk that you configured in 'config/filesystem.php'
+			'disk' => 'vendorLog',
+		],
+
     ],
 ];

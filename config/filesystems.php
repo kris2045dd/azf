@@ -44,7 +44,7 @@ return [
     'disks' => [
 
 		/*
-			Eventual: Laravel-Admin
+			Haima: Laravel-Admin
 
 			\Illuminate\Support\Facades\Storage
 				Storage::disk('admin')->exists('path/my_file');
@@ -55,6 +55,18 @@ return [
 			'driver' => 'local',
 			'root' => storage_path('app/public/admin/uploads'),		// storage/app/public/admin/uploads
 			'url' => '/storage/admin/uploads',						// [env('APP_URL') .] /storage/admin/uploads ([APP_URL]/storage/admin/uploads)
+			'visibility' => 'public',
+		],
+
+		/*
+			Haima: 檢視 Vendor Log 專用 (Media manager)
+
+			public/storage: ln -s ../../storage/logs/vendor/ vendorLog
+		*/
+		'vendorLog' => [
+			'driver' => 'local',
+			'root' => storage_path('logs/vendor'),
+			'url' => env('APP_URL') . '/storage/vendorLog',
 			'visibility' => 'public',
 		],
 
