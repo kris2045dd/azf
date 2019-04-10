@@ -1,0 +1,209 @@
+.main-header,
+.main-sidebar {
+    display: block;
+}
+
+.main-footer {
+    display: none;
+}
+
+html,
+body,
+.wrapper {
+    height: 100%;
+}
+
+#pjax-container {
+    overflow: none;
+}
+
+.content-wrapper iframe {
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.content-tabs {
+    position: relative;
+    height: 36px;
+    font-size: 12px;
+    display: block;
+    float: left;
+    overflow: hidden;
+    top: 7px;
+    width: 70%;
+}
+.roll-nav {
+    position: absolute;
+    width: 36px;
+    text-align: center;
+    color: #475059;
+    z-index: 2;
+    top: 0;
+}
+
+.content-tabs .roll-left {
+    left: 0;
+}
+
+.content-tabs .roll-right {
+    right: 0;
+}
+
+.content-tabs button {
+    height: 100%;
+    outline: 0;
+    background: none;
+    border: none;
+}
+
+.content-tabs button i {
+    color: #fafafa;
+}
+
+.content-tabs nav.page-tabs {
+    width: 100000px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.content-tabs nav.page-tabs .page-tabs-content {
+    float: left;
+}
+
+.page-tabs-content {
+    height: 100%;
+}
+
+.content-tabs .page-tabs a {
+    display: block;
+    float: left;
+    padding: 0 7px;
+    text-decoration: none;
+    color: #fff;
+    height: 100%;
+    line-height: 36px;
+}
+
+.content-tabs .page-tabs a.active {
+    background: #f6f6f6;
+    color: #888 !important;
+}
+
+.content-tabs .page-tabs a.active i {
+    color: #888 !important;
+}
+
+.content-tabs .page-tabs a:first-child {
+    padding-right: 15px;
+}
+
+.content-tabs .page-tabs a i {
+    margin-top: -10px;
+    right: 0px;
+    position: relative;
+    color: #fff;
+    margin-left: 7px;
+}
+
+.content-tabs .page-tabs a i:hover {
+    color: rgb(175, 52, 52) !important;
+}
+
+.content-tabs .page-tabs a.active i:hover {
+    color: #fff !important;
+}
+
+.roll-right.tabRight {
+    right: -36px;
+}
+
+.roll-right.btn-group {
+    right: 0;
+    width: 80px;
+    padding: 0;
+    height: 36px;
+    top: 7px;
+    border: none;
+}
+
+.roll-right.btn-group button {
+    width: 80px;
+    height: 100%;
+    font-size: 12px;
+    background: none;
+    border: none;
+    color: #fff;
+}
+
+.nav-link {
+    cursor: pointer;
+}
+
+.loading-message {
+    display: inline-block;
+    min-width: 125px;
+    padding: 10px;
+    margin: 0 auto;
+    color: #000 !important;
+    font-size: 13px;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.loading-message > span {
+    line-height: 20px;
+    vertical-align: middle;
+}
+
+.loading-message.loading-message-boxed {
+    border: 1px solid #ddd;
+    background-color: #eee;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+}
+
+.menu_tab span i {
+    margin-right: 3px;
+}
+
+.layui-layer-loading div {
+    margin-left: 230px;
+}
+
+#tab-content,
+.tab-pane {
+    height: 100%;
+}
+
+.sidebar-menu .treeview ul.treeview-menu > li > a {
+    padding: 5px 5px 5px 2px;
+}
+
+.sidebar-menu .treeview ul.treeview-menu > li > a::before {
+    content: "---";
+}
+
+.sidebar-menu .treeview ul.treeview-menu > li::before {
+    content: "¦";
+    float: left;
+    margin-left: 20px;
+    color: #8aa4af;
+}
+
+.dropdown-menu.dropdown-context
+{
+    z-index: 1040;
+}
+
+.navbar-custom-menu 
+{
+    display: none;
+}

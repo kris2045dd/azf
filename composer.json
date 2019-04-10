@@ -9,6 +9,7 @@
         "encore/laravel-admin": "1.6.*",
         "fideloper/proxy": "~3.3",
         "guzzlehttp/guzzle": "~6.0",
+        "ichynul/iframe-tabs": "^1.0",
         "jxlwqq/env-manager": "^0.1.0",
         "laravel-admin-ext/helpers": "^1.1",
         "laravel-admin-ext/media-manager": "^1.0",
@@ -54,7 +55,8 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
-        ]
+        ],
+        "post-update-cmd": "php artisan vendor:publish --tag=iframe-tabs --force"
     },
     "config": {
         "preferred-install": "dist",

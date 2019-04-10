@@ -1,5 +1,7 @@
 <?php
 
+$admin_route_prefix = env('ADMIN_ROUTE_PREFIX', 'admin');
+
 return [
 
     /*
@@ -58,7 +60,7 @@ return [
     */
     'route' => [
 
-        'prefix' => env('ADMIN_ROUTE_PREFIX', 'admin'),
+        'prefix' => $admin_route_prefix,
 
         'namespace' => 'App\\Admin\\Controllers',
 
@@ -312,7 +314,7 @@ return [
     |
     | Whether enable default breadcrumb for every page content.
     */
-    'enable_default_breadcrumb' => true,
+    'enable_default_breadcrumb' => false,	// TODO: 使用 iframe-tabs 會有問題，暫時關閉
 
     /*
     |--------------------------------------------------------------------------
@@ -355,6 +357,37 @@ return [
 		'env-manager' => [
 			// If the value is set to false, this extension will be disabled
 			'enable' => true,
+		],
+
+		// Haima: laravel-admin iframe-tabs (https://github.com/ichynul/iframe-tabs)
+		'iframe-tabs' => [
+			// Set to `false` if you want to disable this extension
+			'enable' => true,
+			// Default page controller
+			'home_action' => App\Admin\Controllers\HomeController::class . '@index',
+			// Default page uir after user login success
+			'home_uri' => "/{$admin_route_prefix}/dashboard",
+			// Default page tab-title
+			'home_title' => 'Home',
+			// Default page tab-title icon
+			'home_icon' => 'fa-home',
+			// Whether show icon befor titles for all tab
+			'use_icon' => true,
+			// dashboard css
+			'tabs_css' =>'/vendor/laravel-admin-ext/iframe-tabs/dashboard.css',
+			// layer.js path , if you do not use laravel-admin-ext\cropper , set another one
+			'layer_path' => '',
+			/**
+			 * href links do not open in tab .
+			 * selecter : .sidebar-menu li a,.navbar-nav>li a .
+			 * if(href.indexOf(pass_urls[i]) > -1)
+			 * {
+			 *     //pass
+			 * }
+			 */
+			'pass_urls' => ["/{$admin_route_prefix}/auth/logout", "/{$admin_route_prefix}/auth/lock"],
+			// When login session state of a tab-page was expired , force top-level window goto login page .
+			'force_login_in_top' => true,
 		],
 
     ],
