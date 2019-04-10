@@ -43,6 +43,21 @@ return [
 
     'disks' => [
 
+		/*
+			Eventual: Laravel-Admin
+
+			\Illuminate\Support\Facades\Storage
+				Storage::disk('admin')->exists('path/my_file');
+				Storage::disk('admin')->get('path/my_file');		// 取得檔案內容
+				Storage::disk('admin')->url('path/my_file');		// filesystems.php 需設定 url
+		*/
+		'admin' => [
+			'driver' => 'local',
+			'root' => storage_path('app/public/admin/uploads'),		// storage/app/public/admin/uploads
+			'url' => '/storage/admin/uploads',						// [env('APP_URL') .] /storage/admin/uploads ([APP_URL]/storage/admin/uploads)
+			'visibility' => 'public',
+		],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
