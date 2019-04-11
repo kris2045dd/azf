@@ -807,16 +807,16 @@
         },
         {
             "name": "ichynul/iframe-tabs",
-            "version": "1.0.29",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ichynul/iframe-tabs.git",
-                "reference": "ccf3f51a4f55edbadfb3c78971a5c9299074feca"
+                "reference": "30dbac6a06ce6b1f5335d9d11f5fa08027ec9767"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ichynul/iframe-tabs/zipball/ccf3f51a4f55edbadfb3c78971a5c9299074feca",
-                "reference": "ccf3f51a4f55edbadfb3c78971a5c9299074feca",
+                "url": "https://api.github.com/repos/ichynul/iframe-tabs/zipball/30dbac6a06ce6b1f5335d9d11f5fa08027ec9767",
+                "reference": "30dbac6a06ce6b1f5335d9d11f5fa08027ec9767",
                 "shasum": ""
             },
             "require": {
@@ -855,7 +855,7 @@
                 "extension",
                 "laravel-admin"
             ],
-            "time": "2019-04-10T01:38:11+00:00"
+            "time": "2019-04-10T12:18:29+00:00"
         },
         {
             "name": "intervention/image",
@@ -5377,7 +5377,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
-    "prefer-stable": true,
+    "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.0.0"

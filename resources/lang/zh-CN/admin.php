@@ -99,7 +99,7 @@ return [
         'filter_placeholder' => '过滤',
     ],
     'menu_titles' => [],
-	// laravel-admin iframe-tabs (https://github.com/ichynul/iframe-tabs)
+	// Haima: laravel-admin iframe-tabs (https://github.com/ichynul/iframe-tabs)
 	'iframe_tabs' => [
 		'oprations' => '页签操作',
 		'refresh_current' => '刷新当前',

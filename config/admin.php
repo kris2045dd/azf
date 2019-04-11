@@ -314,7 +314,7 @@ return [
     |
     | Whether enable default breadcrumb for every page content.
     */
-    'enable_default_breadcrumb' => false,	// TODO: 使用 iframe-tabs 會有問題，暫時關閉
+    'enable_default_breadcrumb' => true,	// Haima: iframe-tabs 問題已修正
 
     /*
     |--------------------------------------------------------------------------
