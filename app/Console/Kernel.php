@@ -26,6 +26,11 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+		// 刪除 30 天前的 Log 檔案 (每月 1 號凌晨 3 點)
+		$schedule->call(function () {
+			(new \App\Task\Delete30DaysAgoLogFiles())->run();
+		})->cron('0 3 1 * *')->name('delete-30-days-ago-log-files')->withoutOverlapping();
     }
 
     /**
