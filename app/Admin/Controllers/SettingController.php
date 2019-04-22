@@ -99,6 +99,7 @@ class SettingController extends Controller
 		});
 
 		//$grid->column('setting_id', '编号');
+		$grid->column('bbin_api', 'BBIN API');
 		$grid->column('bbin_member_only', '限 BBIN 会员充值')->switch([
 			'on'  => ['value' => 1, 'text' => '是', 'color' => 'primary'],
 			'off' => ['value' => 0, 'text' => '否', 'color' => 'default'],
@@ -157,14 +158,15 @@ class SettingController extends Controller
 		});
 
 		$form->tab('设定', function ($form) {
+			$form->text('bbin_api', 'BBIN API');
 			$form->switch('bbin_member_only', '限 BBIN 会员充值')->states([
 				'on'  => ['value' => 1, 'text' => '是', 'color' => 'primary'],
 				'off' => ['value' => 0, 'text' => '否', 'color' => 'default'],
-			]);
+			])->help('透过 BBIN API 查询会员是否存在.');
 			$form->switch('bbin_query_level', '从 BBIN 查询会员层级')->states([
 				'on'  => ['value' => 1, 'text' => '是', 'color' => 'primary'],
 				'off' => ['value' => 0, 'text' => '否', 'color' => 'default'],
-			])->help('查询可能会花费较多时间.');
+			])->help('透过 BBIN API 查询会员层级. (会花费较多时间)');
 			$form->switch('bbin_auto_recharge', 'BBIN 自动上分')->states([
 				'on'  => ['value' => 1, 'text' => '是', 'color' => 'primary'],
 				'off' => ['value' => 0, 'text' => '否', 'color' => 'default'],

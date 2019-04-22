@@ -16,143 +16,280 @@ class VendorBase
 
 	protected $config = [];
 
-	// 代付資料
-	protected $daifu_order;
-	protected $bank_account;
+	// 訂單資料
+	protected $order;
 
-	public function __construct()
+	// 支付資料
+	protected $username;
+	protected $amount;
+	protected $payment_type;
+	protected $datetime;
+
+	public function __construct(\App\Model\MVendor $m_vendor)
 	{
-		$class = get_called_class();
-		$path = explode('\\', $class);
-		$short_class_name = array_pop($path);
-
-		$m_vendor = \App\Model\MVendor::where('class_name', '=', $short_class_name)->first();
-		if (! $m_vendor) {
-			throw new \Exception("MVendor 查无资料. ({$short_class_name})");
-		}
+		$this->vendor_id = $m_vendor->vendor_id;
+		$this->name = $m_vendor->name;
+		$this->class_name = $m_vendor->class_name;
 
 		foreach ($m_vendor->m_vendor_config as $config) {
 			$this->config[$config->k] = $config->v;
 		}
-
-		$this->vendor_id = $m_vendor->vendor_id;
-		$this->name = $m_vendor->name;
-		$this->class_name = $short_class_name;
 	}
 
 	/**
 		取得實例
 	*/
-	public static function getInstance($shared = true)
+	public static function getInstance(\App\Model\MVendor $m_vendor, $shared = true)
 	{
 		if (! $shared) {
-			return new static();
+			return new static($m_vendor);
 		}
 
 		$class = get_called_class();
 		if (! isset(self::$instances[$class])) {
-			self::$instances[$class] = new static();
+			self::$instances[$class] = new static($m_vendor);
 		}
 
 		return self::$instances[$class];
 	}
 
 	/**
-		代付
+		支付
 	*/
-	public function daifu() {
-		throw new \Exception(get_called_class() . ' 尚未实作代付功能.');
-	}
-
-	/**
-		代付 回調
-	*/
-	public function daifuCallback(Request $request) {
-		throw new \Exception(get_called_class() . ' 尚未实作代付回调功能.');
-	}
-
-	/**
-		設置 代付訂單
-	*/
-	public function setDaifuOrder(\App\Model\DDfOrder $df_order)
+	public function pay()
 	{
-		$this->daifu_order = $df_order;
-		return $this;
+		throw new \Exception(get_called_class() . ' 尚未实作支付功能.');
 	}
 
 	/**
-		取得 代付訂單
+		支付寶
 	*/
-	public function getDaifuOrder()
+	public function alipay()
 	{
-		if (empty($this->daifu_order)) {
-			throw new \Exception('尚未设置代付订单.');
-		}
-		return $this->daifu_order;
+		return $this->pay();
 	}
 
 	/**
-		設置 代付銀行帳號
+		支付寶 WAP
 	*/
-	public function setBankAccount(\App\Model\MBankAccount $bank_account)
+	public function alipaywap()
 	{
-		$this->bank_account = $bank_account;
-		return $this;
+		return $this->pay();
 	}
 
 	/**
-		取得 代付銀行帳號
+		微信支付
 	*/
-	public function getBankAccount()
+	public function wechat()
 	{
-		if (empty($this->bank_account)) {
-			throw new \Exception('尚未设置代付银行帐号.');
-		}
-		return $this->bank_account;
+		return $this->pay();
 	}
 
 	/**
-		取得 代付回調網址
+		微信 WAP
 	*/
-	public function getDaifuCallbackUrl()
+	public function wap()
 	{
-		$daifu_order = $this->getDaifuOrder();
+		return $this->pay();
+	}
+
+	/**
+		QQ
+	*/
+	public function qq()
+	{
+		return $this->pay();
+	}
+
+	/**
+		QQ WAP
+	*/
+	public function qqwap()
+	{
+		return $this->pay();
+	}
+
+	/**
+		京東支付
+	*/
+	public function jd()
+	{
+		return $this->pay();
+	}
+
+	/**
+		京東支付 WAP
+	*/
+	public function jdwap()
+	{
+		return $this->pay();
+	}
+
+	/**
+		銀聯快捷
+	*/
+	public function unionfast()
+	{
+		return $this->pay();
+	}
+
+	/**
+		銀聯快捷 WAP
+	*/
+	public function unionfastwap()
+	{
+		return $this->pay();
+	}
+
+	/**
+		網銀
+	*/
+	public function bank()
+	{
+		return $this->pay();
+	}
+
+	/**
+		支付成功頁面 (導頁)
+	*/
+	public function success()
+	{
+		return $this->name . ' 支付成功頁面.';
+	}
+
+	/**
+		回調
+	*/
+	public function callback(Request $request)
+	{
+		throw new \Exception(get_called_class() . ' 尚未实作回调功能.');
+	}
+
+	/**
+		取得 支付成功 網址
+	*/
+	public function getSuccessUrl()
+	{
 		$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . "://{$_SERVER['HTTP_HOST']}";
-		$url .= '/callback/daifu/' . $this->class_name . '/' . $daifu_order->df_order_id;
+		$url .= '/success/' . $this->class_name;
 		return $url;
 	}
 
 	/**
-		付款
+		取得 回調 網址
 	*/
-	public function pay()
+	public function getCallbackUrl()
 	{
-		throw new \Exception(get_called_class() . ' 尚未实作付款功能.');
+		$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . "://{$_SERVER['HTTP_HOST']}";
+		$url .= '/callback/' . $this->class_name . '/' . $this->payment_type . '/' . $this->username . '/' . $this->datetime;
+		return $url;
 	}
 
 	/**
-		付款成功 (導頁)
+		取得 訂單號
 	*/
-	public function success()
+	public function getOrderNo($limit = 0, $separator = '_')
 	{
+		$username = $this->username;
+		if ($limit && (mb_strlen($username) > $limit - (14 + mb_strlen($separator)))) {
+			$max_username_len = $limit - (14 + mb_strlen($separator));
+			if ($max_username_len <= 1) {
+				throw new \Exception("订单号限制长度太小 ({$limit}).");
+			}
+			$username = substr_replace($username, 'x', $max_username_len - 1);
+		}
+		$order_no = $username . $separator . $this->datetime;
+		return $order_no;
 	}
 
 	/**
-		付款回調
+		設置 訂單
 	*/
-	public function callback(Request $request)
+	public function setOrder(\App\Model\DOrder $order)
 	{
-		throw new \Exception(get_called_class() . ' 尚未实作付款回调功能.');
+		$this->order = $order;
+		return $this;
 	}
 
 	/**
-		查詢餘額
-
-		@return string
+		取得 訂單
 	*/
-	public function queryBalance()
+	public function getOrder()
 	{
-		throw new \Exception(get_called_class() . ' 尚未实作查询余额功能.');
+		if (empty($this->order)) {
+			throw new \Exception('尚未设置订单.');
+		}
+		return $this->order;
+	}
+
+	/**
+		儲存 訂單
+	*/
+	protected function saveOrder(string $order_no_outer, float $amount)
+	{
+		$order_no = $this->getOrderNo();
+		if ($order_no === '') {
+			throw new \Exception('订单号为空.');
+		}
+		$d_order = \App\Model\DOrder::where('order_no', '=', $order_no)->first();
+		// 新增訂單
+		if (! $d_order) {
+			$d_order = new \App\Model\DOrder();
+			$d_order->vendor_id = $this->vendor_id;
+			$d_order->payment_type = $this->payment_type;
+			$d_order->order_no = $order_no;
+			$d_order->order_no_outer = $order_no_outer;
+			$d_order->username = $this->username;
+			$d_order->amount = $amount;
+			$d_order->paid_status = \App\Model\DOrder::PAID_STATUS_SUCCESS;
+			$d_order->save();
+		}
+		$this->setOrder($d_order);
+	}
+
+	/**
+		設置 會員帳號
+	*/
+	public function setUsername(string $username)
+	{
+		if (! preg_match('/^[a-zA-Z0-9]{1,}$/', $username)) {
+			throw new \Exception('会员帐号只能是数字或大小写字母组成.');
+		}
+		$this->username = $username;
+		return $this;
+	}
+
+	/**
+		設置 金額
+	*/
+	public function setAmount(float $amount)
+	{
+		$this->amount = $amount;
+		return $this;
+	}
+
+	/**
+		設置 支付方式
+	*/
+	public function setPaymentType(string $payment_type)
+	{
+		if (! in_array($payment_type, \App\Model\MVendorPayment::PAYMENT_TYPES)) {
+			throw new \Exception("不合法的支付方式 ({$payment_type})");
+		}
+		$this->payment_type = $payment_type;
+		return $this;
+	}
+
+	/**
+		設置 日期時間 (產生訂單號需要)
+	*/
+	public function setDatetime(string $datetime)
+	{
+		if (strlen($datetime) != 14) {
+			throw new \Exception('日期时间只能是 yyyymmddhhiiss 格式.');
+		}
+		$this->datetime = $datetime;
+		return $this;
 	}
 
 	/**
@@ -171,7 +308,7 @@ class VendorBase
 	{
 		$lack = [];
 		foreach ($keys as $key) {
-			if (!isset($this->config[$key]) || $this->config[$key]==='') {
+			if (! isset($this->config[$key])) {
 				$lack[] = $key;
 			}
 		}

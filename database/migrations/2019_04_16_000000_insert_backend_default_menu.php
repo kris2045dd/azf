@@ -34,6 +34,7 @@ INSERT INTO `admin_menu` (`id`, `parent_id`, `order`, `title`, `icon`, `uri`, `c
 (10, 0, 0, '会员管理', 'fa-user', 'member', NOW(), NULL),
 (11, 0, 0, '订单', 'fa-files-o', 'order', NOW(), NULL),
 (12, 0, 0, '设置', 'fa-edit', 'setting', NOW(), NULL),
+(13, 0, 0, 'BBIN 机器人', 'fa-bitcoin', 'bbinBot', NOW(), NULL),
 
 # 開發者工具
 (100, 0, 0, '开发者工具', 'fa-android', '', NOW(), NULL),

@@ -15,6 +15,10 @@ Route::group([
 	$router->post('member/import', 'MemberController@import');
 	$router->post('vendor/import', 'VendorController@import');
 
+    $router->get('bbinBot', 'BbinBotController@index');
+    $router->post('bbinBot/logIn', 'BbinBotController@logIn');
+    $router->post('bbinBot/loginState', 'BbinBotController@loginState');
+
 	$router->resource('member', MemberController::class);
 	$router->resource('level', LevelController::class);
 	$router->resource('vendor', VendorController::class);
