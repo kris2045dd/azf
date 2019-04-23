@@ -36,7 +36,7 @@ class OrderController extends Controller
 		*/
         return $content
             ->header('订单')
-            ->description('列表 (总计金额: ' . number_format($query->sum('amount')) . ')')
+            ->description('列表 (总计金额: ' . \App\Helpers\Number::stripDecimalsTailZero(number_format($query->sum('amount'), 2)) . ')')
             ->body($grid);
     }
 
@@ -166,7 +166,7 @@ class OrderController extends Controller
 		$grid->column('order_no_outer', '外部订单号');
 		$grid->column('username', '帐号');
 		$grid->column('amount', '金额')->display(function ($amount) {
-			return number_format($amount);
+			return \App\Helpers\Number::stripDecimalsTailZero(number_format($amount, 2));
 		});
 		$grid->column('paid_status', '付款状态')->display(function ($paid_status) use ($paid_state_table) {
 			return $paid_state_table[$paid_status];
